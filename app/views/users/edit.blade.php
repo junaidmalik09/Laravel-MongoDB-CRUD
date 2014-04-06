@@ -1,12 +1,12 @@
 @extends('master')
 
 @section('container')
-<h1>Editting {{$user->uid}}</h1>
+<h1>Editing {{$user->uid}}</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}
+{{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT','class'=>'form_inline')) }}
 
 
 	<div class="form-group">

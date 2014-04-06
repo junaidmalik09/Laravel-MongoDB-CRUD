@@ -2,7 +2,7 @@
 use Jenssegers\Mongodb\Model as Eloquent;
 class UsersController extends BaseController {
 
-
+	//Test for git
 	/**
 	 * Display a listing of users
 	 *

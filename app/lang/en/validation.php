@@ -93,6 +93,6 @@ return array(
 	|
 	*/
 
-	'attributes' => array('uid'=>'User ID'),
+	'attributes' => array(),
 
 );

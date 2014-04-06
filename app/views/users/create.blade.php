@@ -4,7 +4,9 @@
 <h1>Create a User</h1>
 
 <!-- if there are creation errors, they will show here -->
+<div class="error">
 {{ HTML::ul($errors->all()) }}
+</div>
 
 {{ Form::open(array('url' => '/users','class'=>'form-inline')) }}
 
@@ -56,7 +58,7 @@
 			<div class="col-md-6">{{ Form::select('block_3', array('' => 'Select a Status', '1' => 'Blocked', '2' => 'UnBlocked'), '', array('class' => 'form-control')) }}</div>
 		</div>
 	</div>
-	<br><br>
+	<br><br>	
 	{{ Form::submit('Create the User!', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}

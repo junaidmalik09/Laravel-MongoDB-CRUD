@@ -24,17 +24,21 @@
 			<td>{{ count($value->networks) }}</td>
 			<td>{{ count($value->hostnames) }}</td>
 			
-			<!-- we will also add show, edit, and delete buttons -->
 			<td>
 
-				<!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
-				<!-- we will add this later since its a little more complicated than the other two buttons -->
-
-				<!-- show the nerd (uses the show method found at GET /nerds/{id} -->
+				
+				<!-- show the user (uses the show method found at GET /users/{id} -->
 				<a class="btn btn-small btn-success" href="{{ URL::to('users/' . $value->_id) }}">Show</a>
 
-				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+				<!-- edit this user (uses the edit method found at GET /users/{id}/edit -->
 				<a class="btn btn-small btn-info" href="{{ URL::to('users/' . $value->_id . '/edit') }}">Edit</a>
+
+				<!-- delete the users (uses the destroy method DESTROY /users/{id} -->
+				{{ Form::open(array('url' => 'users/' . $value->id, 'class' => 'pull-right')) }}
+					{{ Form::hidden('_method', 'DELETE') }}
+					{{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+				{{ Form::close() }}
+
 
 			</td>
 		</tr>

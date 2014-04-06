@@ -32,37 +32,8 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		$rules = array(
-			'uid'=>'required',
-			
-			'nid_1'=>'required|numeric',
-			'n_name_1'=>'required|alpha_num',
-			'n_ip_1'=>'required|ip',
-			'n_status_1'=>'required|numeric',
-			
-			'nid_2'=>'numeric',
-			'n_name_2'=>'required_with:nid_2|alpha_num',
-			'n_ip_2'=>'ip',
-			'n_status_2'=>'numeric',
-			
-			'nid_3'=>'numeric',
-			'n_name_3'=>'alpha_num',
-			'n_ip_3'=>'ip',
-			'n_status_3'=>'numeric',
-			
-			'hostname_1'=>'required|alpha_num',
-			'block_1'=>'required|numeric',
-			
-			'hostname_2'=>'alpha_num',
-			'block_2'=>'required_with:hostname_2|numeric',
-			
-			'hostname_3'=>'alpha_num',
-			'block_3'=>'required_with:hostname_3|numeric'
-		);
-
-		
-		
-		$validator = Validator::make($data = Input::all(), $rules);
+		$validator = Validator::make($data = Input::all(), User::$rules);
+		$validator->setAttributeNames(User::$nameAttributes); 
 
 		if ($validator->fails())
 		{
@@ -162,31 +133,8 @@ class UsersController extends BaseController {
 	{
 		
 		$user = User::findOrFail($id);
-		$rules = array(
-			'uid'=>'required',
-			'nid_1'=>'required|numeric',
-			'n_name_1'=>'required|alpha_num',
-			'n_ip_1'=>'required|ip',
-			'n_status_1'=>'required|numeric',
-			'nid_2'=>'numeric',
-			'n_name_2'=>'alpha_num',
-			'n_ip_2'=>'ip',
-			'n_status_2'=>'numeric',
-			'nid_3'=>'numeric',
-			'n_name_3'=>'alpha_num',
-			'n_ip_3'=>'ip',
-			'n_status_3'=>'numeric',
-			'hostname_1'=>'required',
-			'block_1'=>'required|numeric',
-			'hostname_2'=>'',
-			'block_2'=>'numeric',
-			'hostname_3'=>'',
-			'block_3'=>'numeric'
-		);
-
-
-
-		$validator = Validator::make($data = Input::all(), $rules);
+		$validator = Validator::make($data = Input::all(), User::$rules);
+		$validator->setAttributeNames(User::$nameAttributes); 
 
 		if ($validator->fails())
 		{

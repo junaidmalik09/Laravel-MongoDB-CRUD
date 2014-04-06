@@ -5,6 +5,12 @@
 <head>
 	<title>Look! I'm CRUDding</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<style type="text/css">
+	.error {
+		color:red;
+		font-style: italic; 
+	}
+	</style>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 </head>

@@ -1,0 +1,30 @@
+Hi,
+
+I'm Junaid Malik and I'm a computer engineer with more than 5 years of extensive experience in web application development and deployment. I have core expertise in PHP MVC frameworks (CodeIgniter and Laravel) and latest client-side technologies like Twitter Bootstrap, jQuery, KnockoutJS and CSS3.  I can complete this job efficiently by using industry standard tools and libraries for UI as well as back-end which will ensure out-of-the box semantics and code organization. I have sufficient experience in database designs and I deploy databases using migrations instead of hardcoded SQL which ensure proper versioning of the database states.
+
+I can assure you of quality and speedy work. I will be available for Skype conversation daily and will be able to provide you periodic feedback. Kindly give me a chance to work for you and I shall prove my worth.
+
+You can find further details of my work on my e-portfolio at www.behance.net/jmalik.
+
+Looking forward to working with you.
+
+Regards,
+Junaid
+
+
+		<!-- Inpay static HTML form -->
+	<form accept-charset="UTF-8" action="https://test-secure.inpay.com" id="4O1sF0P7_inpay_payment_form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="8q9pubs8x0WsxSuKpHQVX9EphSnyucWZdp69qV9Zm+w=" /></div>
+			<input id="4O1sF0P7_checksum" name="checksum" type="hidden" value="6b31cbaa4d61a1e72d5e37c2971445fb" />
+			<input id="4O1sF0P7_return_url" name="return_url" type="hidden" value="www.sampleurl.com" />
+			<input id="4O1sF0P7_pending_url" name="pending_url" type="hidden" value="" />
+			<input id="4O1sF0P7_cancel_url" name="cancel_url" type="hidden" value="" />
+			<input id="4O1sF0P7_merchant_id" name="merchant_id" type="hidden" value="753" />
+			<input id="4O1sF0P7_order_id" name="order_id" type="hidden" value="{AUTOGENERATE}" />
+			<input id="4O1sF0P7_amount" name="amount" type="hidden" value="200" />
+			<input id="4O1sF0P7_currency" name="currency" type="hidden" value="USD" />
+			<input id="4O1sF0P7_order_text" name="order_text" type="hidden" value="Sample text" />
+			<input id="4O1sF0P7_flow_layout" name="flow_layout" type="hidden" value="multi_page" />
+		
+		<a href="#" onclick="document.getElementById(&#x27;4O1sF0P7_inpay_payment_form&#x27;).submit(); return false;"><img alt="Pay with inpay" src="https://test-admin.inpay.com/images/checkout/2_transparent_209x60.png" style="border:none;" /></a>
+</form>
+

@@ -65,25 +65,7 @@
 
 
 
-	<script type="text/javascript">
-	$("#addMore").click(function() {
-		/*var networkCount = parseInt($("#networkCount").val());
-		networkCount++;
-		var fieldsToAdd = '<br>';
-		fieldsToAdd += '<div class="row">';
-		fieldsToAdd += '<div class="col-md-3"><input class="form-control" placeholder="Network ID" name="nid_'+networkCount+'" type="text" value=""></div>';
-		fieldsToAdd += '<div class="col-md-3"><input class="form-control" placeholder="Network Name" name="n_name_'+networkCount+'" type="text" value=""></div>';
-		fieldsToAdd += '<div class="col-md-3"><input class="form-control" placeholder="Network IP" name="n_ip_'+networkCount+'" type="text" value=""></div>';
-		fieldsToAdd += '<div class="col-md-3">';
-		fieldsToAdd += '<select class="form-control" name="n_status_'+networkCount+'"><option value="9">Select a Status</option><option value="1">Blocked</option><option value="2">UnBlocked</option></select></div>';
-		fieldsToAdd += '</div>';
-		
-		$("#networkFields").append(fieldsToAdd);
-		$("#networkCount").val(networkCount);*/
-
-	});
-
-	</script>
+	
 
 
 @stop

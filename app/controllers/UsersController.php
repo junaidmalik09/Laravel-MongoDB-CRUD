@@ -32,8 +32,54 @@ class UsersController extends BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), User::$rules);
-		$validator->setAttributeNames(User::$nameAttributes); 
+		// Fetch network and hostname count
+		$networkCount = Input::get('networkCount');
+		$hostnameCount = Input::get('hostnameCount');
+
+		$rules = User::$rules;
+		$nameAttributes = User::$nameAttributes;
+
+		if ($networkCount > 1) {
+			for ($i=2; $i<=$networkCount; $i++) {
+				
+				if (Input::get('network_check_'.$i)) {
+					// Add dynamic validation rules
+					$rules['nid_'.$i] = 'required|numeric';
+					$rules['n_name_'.$i] = 'required|alpha_num';
+					$rules['n_ip_'.$i] = 'required|ip';
+					$rules['n_status_'.$i] = 'required|numeric';
+					
+					// Add dynamic attributes
+					$nameAttributes['nid_'.$i] = 'Network ID '.$i;
+					$nameAttributes['n_name_'.$i] = 'Network Name '.$i;
+					$nameAttributes['n_ip_'.$i] = 'Network IP '.$i;
+					$nameAttributes['n_status_'.$i] = 'Network Status '.$i;
+
+				}
+
+			}
+		}
+
+		if ($hostnameCount > 1) {
+			for ($i=2; $i<=$hostnameCount; $i++) {
+				
+				if (Input::get('hostname_check_'.$i)) {
+					// Add dynamic validation rules
+					$rules['hostname_'.$i]='required';
+					$rules['block_'.$i]='required|numeric';
+
+					// Add dynamic attributes
+					$nameAttributes['hostname_'.$i]='Hostname '.$i;
+					$nameAttributes['block_'.$i]='Block '.$i;
+				}
+			}
+
+		}
+
+		
+
+		$validator = Validator::make($data = Input::all(), $rules);
+		$validator->setAttributeNames($nameAttributes); 
 
 		if ($validator->fails())
 		{
@@ -42,55 +88,29 @@ class UsersController extends BaseController {
 
 		$newUser = new User;
 		$newUser->uid = Input::get('uid');
+		
 		$networks = array();
-		if (Input::get('nid_1') != '') {
-			array_push($networks, array(
-					'nid'=>Input::get('nid_1'),
-					'n_name'=>Input::get('n_name_1'),
-					'n_ip'=>Input::get('n_ip_1'),
-					'n_status'=>Input::get('n_status_1')
+		for ($i=1; $i<=$networkCount; $i++) {
+			if (Input::get('network_check_'.$i) || $i==1) {
+				array_push($networks, array(
+						'nid'=>Input::get('nid_'.$i),
+						'n_name'=>Input::get('n_name_'.$i),
+						'n_ip'=>Input::get('n_ip_'.$i),
+						'n_status'=>Input::get('n_status_'.$i)
 				));
-		}
-
-		if (Input::get('nid_2') != '') {
-			array_push($networks, array(
-					'nid'=>Input::get('nid_2'),
-					'n_name'=>Input::get('n_name_2'),
-					'n_ip'=>Input::get('n_ip_2'),
-					'n_status'=>Input::get('n_status_2')
-				));
-		}
-
-		if (Input::get('nid_3') != '') {
-			array_push($networks, array(
-					'nid'=>Input::get('nid_3'),
-					'n_name'=>Input::get('n_name_3'),
-					'n_ip'=>Input::get('n_ip_3'),
-					'n_status'=>Input::get('n_status_3')
-				));
+			}
 		}
 
 		$hostnames = array();
-		if (Input::get('hostname_1') != '') {
-			array_push($hostnames, array(
-					'hostname'=>Input::get('hostname_1'),
-					'block'=>Input::get('block_1')
-				));
+		for ($i=1;$i<=$hostnameCount;$i++) {
+			if (Input::get('hostname_check_'.$i) || $i==1) {
+				array_push($hostnames, array(
+						'hostname'=>Input::get('hostname_'.$i),
+						'block'=>Input::get('block_'.$i)
+					));
+			}
 		}
-
-		if (Input::get('hostname_2') != '') {
-			array_push($hostnames, array(
-					'hostname'=>Input::get('hostname_2'),
-					'block'=>Input::get('block_2')
-				));
-		}
-
-		if (Input::get('hostname_3') != '') {
-			array_push($hostnames, array(
-					'hostname'=>Input::get('hostname_3'),
-					'block'=>Input::get('block_3')
-				));
-		}
+		
 		$newUser->networks = $networks;
 		$newUser->hostnames = $hostnames;
 		$newUser->save();
@@ -133,8 +153,50 @@ class UsersController extends BaseController {
 	{
 		
 		$user = User::findOrFail($id);
-		$validator = Validator::make($data = Input::all(), User::$rules);
-		$validator->setAttributeNames(User::$nameAttributes); 
+
+		// Fetch network and hostname count
+		$networkCount = Input::get('networkCount');
+		$hostnameCount = Input::get('hostnameCount');
+
+		$rules = User::$rules;
+		$nameAttributes = User::$nameAttributes;
+
+		if ($networkCount > 1) {
+			for ($i=2; $i<=$networkCount; $i++) {
+				
+				if (Input::get('network_check_'.$i)) {
+					// Add dynamic validation rules
+					$rules['nid_'.$i] = 'required|numeric';
+					$rules['n_name_'.$i] = 'required|alpha_num';
+					$rules['n_ip_'.$i] = 'required|ip';
+					$rules['n_status_'.$i] = 'required|numeric';
+					
+					// Add dynamic attributes
+					$nameAttributes['nid_'.$i] = 'Network ID '.$i;
+					$nameAttributes['n_name_'.$i] = 'Network Name '.$i;
+					$nameAttributes['n_ip_'.$i] = 'Network IP '.$i;
+					$nameAttributes['n_status_'.$i] = 'Network Status '.$i;
+				}
+			}
+		}
+
+		if ($hostnameCount > 1) {
+			for ($i=2; $i<=$hostnameCount; $i++) {
+				if (Input::get('hostname_check_'.$i)) {
+					// Add dynamic validation rules
+					$rules['hostname_'.$i]='required';
+					$rules['block_'.$i]='required|numeric';
+
+					// Add dynamic attributes
+					$nameAttributes['hostname_'.$i]='Hostname '.$i;
+					$nameAttributes['block_'.$i]='Block '.$i;
+				}
+			}
+
+		}
+
+		$validator = Validator::make($data = Input::all(), $rules);
+		$validator->setAttributeNames($nameAttributes); 
 
 		if ($validator->fails())
 		{
@@ -142,56 +204,30 @@ class UsersController extends BaseController {
 		}
 
 		$networks = array();
-		if (Input::get('nid_1') != '') {
-			array_push($networks, array(
-					'nid'=>Input::get('nid_1'),
-					'n_name'=>Input::get('n_name_1'),
-					'n_ip'=>Input::get('n_ip_1'),
-					'n_status'=>Input::get('n_status_1')
+		for ($i=1; $i<=$networkCount; $i++) {
+			if (Input::get('network_check_'.$i) || $i==1) {
+				array_push($networks, array(
+						'nid'=>Input::get('nid_'.$i),
+						'n_name'=>Input::get('n_name_'.$i),
+						'n_ip'=>Input::get('n_ip_'.$i),
+						'n_status'=>Input::get('n_status_'.$i)
 				));
-		}
-
-		if (Input::get('nid_2') != '') {
-			array_push($networks, array(
-					'nid'=>Input::get('nid_2'),
-					'n_name'=>Input::get('n_name_2'),
-					'n_ip'=>Input::get('n_ip_2'),
-					'n_status'=>Input::get('n_status_2')
-				));
-		}
-
-		if (Input::get('nid_3') != '') {
-			array_push($networks, array(
-					'nid'=>Input::get('nid_3'),
-					'n_name'=>Input::get('n_name_3'),
-					'n_ip'=>Input::get('n_ip_3'),
-					'n_status'=>Input::get('n_status_3')
-				));
+			}
 		}
 
 		$hostnames = array();
-		if (Input::get('hostname_1') != '') {
-			array_push($hostnames, array(
-					'hostname'=>Input::get('hostname_1'),
-					'block'=>Input::get('block_1')
-				));
+		for ($i=1;$i<=$hostnameCount;$i++) {
+			if (Input::get('hostname_check_'.$i) || $i==1) {
+				array_push($hostnames, array(
+						'hostname'=>Input::get('hostname_'.$i),
+						'block'=>Input::get('block_'.$i)
+					));
+			}
 		}
 
-		if (Input::get('hostname_2') != '') {
-			array_push($hostnames, array(
-					'hostname'=>Input::get('hostname_2'),
-					'block'=>Input::get('block_2')
-				));
-		}
-
-		if (Input::get('hostname_3') != '') {
-			array_push($hostnames, array(
-					'hostname'=>Input::get('hostname_3'),
-					'block'=>Input::get('block_3')
-				));
-		}
 		$user->networks = $networks;
 		$user->hostnames = $hostnames;
+
 		$user->save();
 
 		return Redirect::route('users.index');

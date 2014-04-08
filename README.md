@@ -1,6 +1,11 @@
 CRUD with Laravel and MongoDB:
 =============================================
 
+Updates
+-------
+April 8, 2014
+- Added dynamic addition of networks and hostnames
+
 Libraries
 ---------------
 - https://github.com/jenssegers/Laravel-MongoDB
@@ -17,5 +22,4 @@ Screenshots
 
 TODOs
 -----
-- Dynamic addition of networks and hostnames when creating users. Right now, the maximum number is limited to three.
 - Validation check for existing User IDs
